@@ -1,0 +1,22 @@
+# systemd user service for customrp-cli. Install with:
+#   mkdir -p ~/.config/systemd/user
+#   cp customrp-cli.service ~/.config/systemd/user/
+#   systemctl --user daemon-reload
+#   systemctl --user enable --now customrp-cli
+# See docs/running-in-the-background.md.
+
+[Unit]
+Description=Custom Discord Rich Presence (customrp-cli)
+Documentation=https://github.com/KeiraOMG0/customrp-cli
+
+[Service]
+Type=simple
+# Where pipx installs it. Change this if you installed customrp-cli somewhere else.
+ExecStart=%h/.local/bin/customrp-cli run
+# Restart after crashes, but not for config errors (exit code 2), which won't fix themselves
+Restart=on-failure
+RestartSec=30
+RestartPreventExitStatus=2
+
+[Install]
+WantedBy=default.target

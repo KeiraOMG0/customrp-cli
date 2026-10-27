@@ -1,0 +1,74 @@
+# customrp-cli example configuration: copy it, then change what you like.
+# Every option is described in https://github.com/KeiraOMG0/customrp-cli/blob/main/docs/configuration.md
+# While customrp-cli runs, it reloads this file whenever it's saved.
+
+[presence]
+# Your Discord application's ID, from https://discord.com/developers/applications
+# Leave it empty to use CustomRP's default application.
+application_id = ""
+
+# playing, listening, watching or competing
+type = "playing"
+# What the member list shows next to your name: name (the application's name), details or state
+status_display = "name"
+
+# Sent as the activity's name
+name = ""
+# The two lines of text, each with an optional link
+details = "Building a Rich Presence tool"
+details_url = "github.com/KeiraOMG0/customrp-cli"
+state = "Party up"
+state_url = ""
+
+# Shown as "(1 of 4)" with the playing type, when both are above 0
+party_size = 1
+party_max = 4
+
+# since_last_connection, since_startup, since_presence_update, local_time or custom
+timestamps = "custom"
+# For custom: a start, and optionally an end. Times without an offset (like +02:00) are local.
+# A start in the future counts down to it.
+custom_start = 2026-01-01T09:00:00
+# custom_end = 2026-01-01T12:00:00
+
+# Send images hosted on Discord's CDN through CustomRP's proxy, since Discord won't show them directly
+proxy_discord_cdn = true
+
+[presence.large_image]
+# An asset name from your application, or an image URL
+key = "https://example.com/logo.png"
+# Tooltip, and the link opened when the image is clicked
+text = "customrp-cli"
+url = ""
+
+[presence.small_image]
+key = ""
+text = ""
+url = ""
+
+# Up to two buttons, each with a label (at most 31 bytes) and a URL
+[[presence.buttons]]
+label = "Get customrp-cli"
+url = "https://github.com/KeiraOMG0/customrp-cli"
+
+[[presence.buttons]]
+label = "My website"
+url = "https://example.com"
+
+[connection]
+# Which Discord to connect to: "auto", or 0 to 9 to pick one when several Discord clients run
+pipe = "auto"
+# Seconds between connection attempts while Discord isn't running
+retry_interval = 10
+# How many times to retry before giving up; -1 retries forever
+max_retries = -1
+
+[run]
+# Reload this file when it changes
+watch_config = true
+
+[logging]
+# debug, info, warning or error
+level = "info"
+# Also write the log to this file (relative to this config file's folder). Empty for none.
+file = ""

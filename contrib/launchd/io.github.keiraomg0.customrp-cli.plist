@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  launchd agent for customrp-cli. Replace YOUR_USER_NAME (twice), then:
+    cp io.github.keiraomg0.customrp-cli.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/io.github.keiraomg0.customrp-cli.plist
+  See docs/running-in-the-background.md.
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>io.github.keiraomg0.customrp-cli</string>
+    <key>ProgramArguments</key>
+    <array>
+        <!-- Where pipx installs it; `which customrp-cli` shows yours -->
+        <string>/Users/YOUR_USER_NAME/.local/bin/customrp-cli</string>
+        <string>run</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StandardErrorPath</key>
+    <string>/Users/YOUR_USER_NAME/Library/Logs/customrp-cli.log</string>
+</dict>
+</plist>

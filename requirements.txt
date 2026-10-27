@@ -1,0 +1,4 @@
+# customrp-cli's dependencies. Keep in step with pyproject.toml.
+#   pip install -r requirements.txt
+customrp-core @ git+https://github.com/KeiraOMG0/customrp-core.git@v0.1.1
+tomli>=1.1; python_version < "3.11"

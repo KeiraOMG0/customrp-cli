@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "customrp-cli"
+dynamic = ["version"]
+description = "Custom Discord Rich Presence from the command line, configured with a TOML file. An independent alternative to CustomRP for Linux, macOS and Windows."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "KeiraOMG0" }]
+keywords = ["discord", "rich presence", "rpc", "customrp", "cli"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Communications :: Chat",
+]
+# Keep in step with requirements.txt
+dependencies = [
+    "customrp-core @ git+https://github.com/KeiraOMG0/customrp-core.git@v0.1.1",
+    "tomli>=1.1; python_version < '3.11'",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[project.scripts]
+customrp-cli = "customrp_cli.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/KeiraOMG0/customrp-cli"
+Documentation = "https://github.com/KeiraOMG0/customrp-cli/tree/main/docs"
+Issues = "https://github.com/KeiraOMG0/customrp-cli/issues"
+
+[tool.setuptools.dynamic]
+version = { attr = "customrp_cli.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
