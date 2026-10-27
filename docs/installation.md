@@ -14,12 +14,90 @@ what `requirements.txt` and the dependency in `pyproject.toml` point at, pinned 
 ## With pipx (recommended)
 
 [pipx](https://pipx.pypa.io) installs command-line tools into their own environments and puts them on
-your `PATH`.
+your `PATH`. If you already have it, skip to [installing customrp-cli](#installing-customrp-cli).
+
+### Installing pipx
+
+pipx needs **Python 3.11 or newer**. On Python 3.9 or 3.10, use the
+[virtual environment](#with-a-virtual-environment-and-requirementstxt) method instead.
+
+**macOS** ([Homebrew](https://brew.sh)):
 
 ```sh
-# Debian/Ubuntu: sudo apt install pipx    Fedora: sudo dnf install pipx    Arch: sudo pacman -S python-pipx
-# macOS: brew install pipx                Windows: py -m pip install --user pipx
-pipx ensurepath          # Once, then open a new terminal
+brew install pipx
+pipx ensurepath
+```
+
+**Ubuntu 23.04 or newer, Debian 12 or newer:**
+
+```sh
+sudo apt update
+sudo apt install pipx
+pipx ensurepath
+```
+
+**Fedora:**
+
+```sh
+sudo dnf install pipx
+pipx ensurepath
+```
+
+**Arch:**
+
+```sh
+sudo pacman -S python-pipx
+pipx ensurepath
+```
+
+**Other Linux distributions:**
+
+```sh
+python3 -m pip install --user pipx
+python3 -m pipx ensurepath
+```
+
+If that fails with `externally-managed-environment`, your distribution wants you to use its own package
+(look for one named `pipx` or `python3-pipx`). If there isn't one, put pipx in a virtual environment of
+its own:
+
+```sh
+python3 -m venv ~/.local/share/pipx-venv
+~/.local/share/pipx-venv/bin/pip install pipx
+ln -s ~/.local/share/pipx-venv/bin/pipx ~/.local/bin/pipx
+pipx ensurepath
+```
+
+**Windows**, with pip (use `python3` instead of `py` if Python came from the Microsoft Store):
+
+```powershell
+py -m pip install --user pipx
+py -m pipx ensurepath
+```
+
+If pip warns that `pipx.exe` isn't on your `PATH`, go to the folder named in the warning and run
+`.\pipx.exe ensurepath` there instead.
+
+**Windows**, with [Scoop](https://scoop.sh):
+
+```powershell
+scoop install pipx
+pipx ensurepath
+```
+
+Then **close the terminal and open a new one**, so the `PATH` change from `ensurepath` takes effect, and
+check that it works:
+
+```sh
+pipx --version
+```
+
+These steps follow pipx's own [installation guide](https://pipx.pypa.io/stable/how-to/install-pipx.html),
+which has more options and troubleshooting.
+
+### Installing customrp-cli
+
+```sh
 pipx install git+https://github.com/KeiraOMG0/customrp-cli.git
 customrp-cli --version
 ```

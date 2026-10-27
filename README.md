@@ -87,6 +87,19 @@ on your `PATH`:
 pipx install git+https://github.com/KeiraOMG0/customrp-cli.git
 ```
 
+Don't have pipx? It needs Python 3.11 or newer. The short version:
+
+| System | Command |
+|---|---|
+| macOS | `brew install pipx` |
+| Ubuntu, Debian | `sudo apt install pipx` |
+| Fedora | `sudo dnf install pipx` |
+| Arch | `sudo pacman -S python-pipx` |
+| Windows | `py -m pip install --user pipx` |
+
+Then run `pipx ensurepath` (on Windows: `py -m pipx ensurepath`) and open a new terminal. Step-by-step
+instructions for every system are in [docs/installation.md](docs/installation.md#installing-pipx).
+
 Or with a virtual environment and `requirements.txt`:
 
 ```sh
