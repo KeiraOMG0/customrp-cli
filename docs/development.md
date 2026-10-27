@@ -7,7 +7,7 @@ git clone https://github.com/KeiraOMG0/customrp-cli.git
 cd customrp-cli
 python3 -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
-pip install -e ".[test]"           # Also installs customrp-core from GitHub
+pip install -e ".[test]"           # Also installs customrp-core from PyPI
 ```
 
 To work on customrp-cli and customrp-core together, install a local checkout of the library over the
@@ -71,7 +71,19 @@ A new presence option usually needs both: the field in customrp-core, then the c
 
 ## Releasing
 
-1. If customrp-core changed, release it first, then update its tag in **both** `requirements.txt` and
-   `pyproject.toml`.
+Releases go to [PyPI](https://pypi.org/project/customrp-cli/) through GitHub Actions
+(`.github/workflows/publish.yml`), using PyPI's
+[trusted publishing](https://docs.pypi.org/trusted-publishers/), so no API token is stored anywhere.
+
+1. If customrp-core changed, release it first. Then update the version range in `pyproject.toml`
+   (PyPI doesn't accept dependencies on Git URLs) and the tag in `requirements.txt`.
 2. Update `__version__` in `src/customrp_cli/__init__.py` and `CHANGELOG.md`.
 3. Commit and tag: `git tag -a v0.2.0 -m "customrp-cli 0.2.0" && git push origin main v0.2.0`.
+4. The workflow builds the package, checks that the tag matches `__version__`, and waits for approval:
+   open the run under **Actions**, then **Review deployments** → **pypi** → **Approve and deploy**.
+
+Every push also builds the package and runs `twine check`, so packaging problems show up before a release.
+
+The `pypi` environment (repository **Settings → Environments**) only accepts `v*` tags and needs a
+reviewer's approval. The matching trusted publisher on PyPI is set for this repository, workflow
+`publish.yml` and environment `pypi`; renaming any of these breaks publishing until PyPI is updated.

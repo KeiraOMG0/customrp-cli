@@ -5,11 +5,13 @@
 | | |
 |---|---|
 | Python | 3.9 or newer. Python 3.9 and 3.10 also need `tomli`, which is installed automatically. |
-| Git | pip uses it to download customrp-core from GitHub |
 | Discord | The desktop app, running on the same computer and user account. Flatpak, Snap and Vesktop should work too (see [troubleshooting](troubleshooting.md#discord-isnt-found)). |
+| Git | Only to install from GitHub instead of PyPI |
 
-customrp-cli isn't on PyPI. It installs from GitHub, and it fetches customrp-core from GitHub too. That's
-what `requirements.txt` and the dependency in `pyproject.toml` point at, pinned to a release tag.
+customrp-cli and the library it's built on, [customrp-core](https://github.com/KeiraOMG0/customrp-core),
+are both on PyPI ([customrp-cli](https://pypi.org/project/customrp-cli/),
+[customrp-core](https://pypi.org/project/customrp-core/)). `requirements.txt` installs customrp-core
+from GitHub at a release tag instead, for anyone who'd rather not use PyPI.
 
 ## With pipx (recommended)
 
@@ -98,11 +100,13 @@ which has more options and troubleshooting.
 ### Installing customrp-cli
 
 ```sh
-pipx install git+https://github.com/KeiraOMG0/customrp-cli.git
+pipx install customrp-cli
 customrp-cli --version
 ```
 
-To install a specific release, add `@v0.1.0` to the URL.
+To install a specific version: `pipx install customrp-cli==0.1.1`. To install the latest code from
+GitHub instead: `pipx install git+https://github.com/KeiraOMG0/customrp-cli.git` (add `@v0.1.1` for a
+release).
 
 ## With a virtual environment and requirements.txt
 
@@ -115,6 +119,8 @@ pip install -r requirements.txt    # customrp-core from GitHub, and tomli on old
 pip install .
 customrp-cli --version
 ```
+
+To use PyPI instead of cloning, replace the last two `pip` lines with `pip install customrp-cli`.
 
 The command is only on your `PATH` while the environment is active. Without activating it, run
 `.venv/bin/customrp-cli` (Windows: `.venv\Scripts\customrp-cli.exe`), or `python -m customrp_cli` with
@@ -135,8 +141,9 @@ On Debian and Ubuntu, `python3 -m venv` needs the `python3-venv` package.
 ## Updating
 
 ```sh
-pipx upgrade customrp-cli                           # pipx
-pip install --upgrade -r requirements.txt . # venv, after git pull
+pipx upgrade customrp-cli                    # pipx
+pip install --upgrade customrp-cli           # venv, installed from PyPI
+pip install --upgrade -r requirements.txt .  # venv, cloned: after git pull
 ```
 
 Your config file isn't touched by updates.

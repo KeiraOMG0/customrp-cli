@@ -48,8 +48,9 @@ The code is split into two repositories:
   lock, and running as a service.
 
 This keeps the CLI small, and lets someone build a different front end (a tray icon, a TUI, a web UI)
-on the same core without copying it. customrp-cli installs customrp-core from GitHub at a pinned tag,
-through `requirements.txt` and `pyproject.toml`.
+on the same core without copying it. Both are published on PyPI. customrp-cli's `pyproject.toml`
+depends on a customrp-core version range from PyPI, since PyPI doesn't accept dependencies on Git
+URLs; `requirements.txt` installs the same version straight from GitHub at a release tag.
 
 ## Decisions
 

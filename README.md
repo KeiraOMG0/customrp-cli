@@ -46,22 +46,22 @@ setups, under a service manager, and in dotfiles.
 - Lists the art assets uploaded to your Discord application
 - One instance per user, with `status` and `stop` commands that work on every platform
 - Runs as a systemd user service, a launchd agent, or a Windows scheduled task; ready-made files are in
-  [`contrib/`](contrib)
+  [`contrib/`](https://github.com/KeiraOMG0/customrp-cli/tree/main/contrib)
 - No GUI, no Wine, and nothing beyond Python (plus `tomli` on Python 3.9 and 3.10)
 
 ## How it differs from CustomRP
 
 | CustomRP (Windows app) | customrp-cli |
 |---|---|
-| Window with text boxes and dropdowns | A TOML config file ([reference](docs/configuration.md)) |
+| Window with text boxes and dropdowns | A TOML config file ([reference](https://github.com/KeiraOMG0/customrp-cli/blob/main/docs/configuration.md)) |
 | Click "Update presence" | Save the file; it reloads automatically |
 | Minimizes to the tray | Runs in a terminal or as a background service |
-| "Run on startup" checkbox | systemd, launchd or Task Scheduler ([guide](docs/running-in-the-background.md)) |
+| "Run on startup" checkbox | systemd, launchd or Task Scheduler ([guide](https://github.com/KeiraOMG0/customrp-cli/blob/main/docs/running-in-the-background.md)) |
 | Gives up after 30 attempts to reach Discord | Retries forever by default (`max_retries`) |
 | Translated into many languages | English only for now |
 | Built-in update checker | Update with `pipx upgrade customrp-cli` |
 
-More in [docs/migrating-from-customrp.md](docs/migrating-from-customrp.md).
+More in [docs/migrating-from-customrp.md](https://github.com/KeiraOMG0/customrp-cli/blob/main/docs/migrating-from-customrp.md).
 
 ## Supported systems
 
@@ -76,7 +76,6 @@ You need:
 - Python 3.9 or newer
 - The Discord **desktop** app (or a client that provides Discord's IPC socket, like Vesktop) running on
   the same computer, as the same user. The browser version can't show Rich Presence from other programs.
-- Git, to install customrp-core from GitHub
 
 ## Installation
 
@@ -84,7 +83,7 @@ The easiest way is [pipx](https://pipx.pypa.io), which puts customrp-cli in its 
 on your `PATH`:
 
 ```sh
-pipx install git+https://github.com/KeiraOMG0/customrp-cli.git
+pipx install customrp-cli
 ```
 
 Don't have pipx? It needs Python 3.11 or newer. The short version:
@@ -98,7 +97,7 @@ Don't have pipx? It needs Python 3.11 or newer. The short version:
 | Windows | `py -m pip install --user pipx` |
 
 Then run `pipx ensurepath` (on Windows: `py -m pipx ensurepath`) and open a new terminal. Step-by-step
-instructions for every system are in [docs/installation.md](docs/installation.md#installing-pipx).
+instructions for every system are in [docs/installation.md](https://github.com/KeiraOMG0/customrp-cli/blob/main/docs/installation.md#installing-pipx).
 
 Or with a virtual environment and `requirements.txt`:
 
@@ -111,7 +110,9 @@ pip install -r requirements.txt    # Installs customrp-core from GitHub
 pip install .
 ```
 
-Details, including Windows notes and uninstalling, are in [docs/installation.md](docs/installation.md).
+Plain `pip install customrp-cli` inside a virtual environment works too.
+
+Details, including Windows notes and uninstalling, are in [docs/installation.md](https://github.com/KeiraOMG0/customrp-cli/blob/main/docs/installation.md).
 
 ## Quick start
 
@@ -147,8 +148,8 @@ label = "My website"
 url = "https://example.com"
 ```
 
-Every option is optional. [`examples/config.toml`](examples/config.toml) is a complete, commented
-example, and [docs/configuration.md](docs/configuration.md) explains each option.
+Every option is optional. [`examples/config.toml`](https://github.com/KeiraOMG0/customrp-cli/blob/main/examples/config.toml) is a complete, commented
+example, and [docs/configuration.md](https://github.com/KeiraOMG0/customrp-cli/blob/main/docs/configuration.md) explains each option.
 
 The config file is at:
 
@@ -177,7 +178,7 @@ Use another file with `-c path/to/file.toml`, or set `CUSTOMRP_CLI_CONFIG`.
 
 Options for every command: `-c/--config FILE`, `-v/--verbose` (debug output), `-q/--quiet` (errors
 only), `-h/--help`, plus `-V/--version`. Exit codes and more examples are in
-[docs/commands.md](docs/commands.md).
+[docs/commands.md](https://github.com/KeiraOMG0/customrp-cli/blob/main/docs/commands.md).
 
 customrp-cli never asks questions or waits for input, so it's safe to use from scripts, cron and service
 managers.
@@ -195,7 +196,7 @@ journalctl --user -u customrp-cli -f     # Watch the log
 ```
 
 macOS (launchd) and Windows (Task Scheduler) are covered in
-[docs/running-in-the-background.md](docs/running-in-the-background.md).
+[docs/running-in-the-background.md](https://github.com/KeiraOMG0/customrp-cli/blob/main/docs/running-in-the-background.md).
 
 ## Logging and troubleshooting
 
@@ -204,12 +205,12 @@ macOS (launchd) and Windows (Task Scheduler) are covered in
 
 | Problem | Try |
 |---|---|
-| `Couldn't find a running Discord client` | Start the Discord desktop app. With Flatpak or Snap, see [troubleshooting](docs/troubleshooting.md#discord-isnt-found). |
+| `Couldn't find a running Discord client` | Start the Discord desktop app. With Flatpak or Snap, see [troubleshooting](https://github.com/KeiraOMG0/customrp-cli/blob/main/docs/troubleshooting.md#discord-isnt-found). |
 | `Discord returned an error (4000): Invalid Client ID` | `application_id` is wrong |
 | Runs fine but nothing shows on your profile | In Discord: User Settings → Activity Privacy → turn on sharing your activity |
 | `already running` | `customrp-cli status`, then `customrp-cli stop` |
 
-More in [docs/troubleshooting.md](docs/troubleshooting.md).
+More in [docs/troubleshooting.md](https://github.com/KeiraOMG0/customrp-cli/blob/main/docs/troubleshooting.md).
 
 ## Known limitations
 
@@ -223,10 +224,10 @@ More in [docs/troubleshooting.md](docs/troubleshooting.md).
 
 ## Documentation
 
-[docs/](docs/index.md): [installation](docs/installation.md) · [configuration](docs/configuration.md) ·
-[commands](docs/commands.md) · [background](docs/running-in-the-background.md) ·
-[troubleshooting](docs/troubleshooting.md) · [migrating from CustomRP](docs/migrating-from-customrp.md) ·
-[design](docs/design.md) · [development](docs/development.md)
+[docs/](https://github.com/KeiraOMG0/customrp-cli/blob/main/docs/index.md): [installation](https://github.com/KeiraOMG0/customrp-cli/blob/main/docs/installation.md) · [configuration](https://github.com/KeiraOMG0/customrp-cli/blob/main/docs/configuration.md) ·
+[commands](https://github.com/KeiraOMG0/customrp-cli/blob/main/docs/commands.md) · [background](https://github.com/KeiraOMG0/customrp-cli/blob/main/docs/running-in-the-background.md) ·
+[troubleshooting](https://github.com/KeiraOMG0/customrp-cli/blob/main/docs/troubleshooting.md) · [migrating from CustomRP](https://github.com/KeiraOMG0/customrp-cli/blob/main/docs/migrating-from-customrp.md) ·
+[design](https://github.com/KeiraOMG0/customrp-cli/blob/main/docs/design.md) · [development](https://github.com/KeiraOMG0/customrp-cli/blob/main/docs/development.md)
 
 ## Running the tests
 
@@ -236,7 +237,7 @@ pytest
 ```
 
 The tests don't need Discord; they use a fake Discord server from customrp-core. See
-[docs/development.md](docs/development.md).
+[docs/development.md](https://github.com/KeiraOMG0/customrp-cli/blob/main/docs/development.md).
 
 ## Contributing
 
@@ -257,4 +258,4 @@ Issues and pull requests are welcome. Please:
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT. See [LICENSE](https://github.com/KeiraOMG0/customrp-cli/blob/main/LICENSE).
