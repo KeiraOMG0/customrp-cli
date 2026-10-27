@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- `requirements.txt` installs customrp-core from PyPI instead of GitHub
+- Releases are automatic: pushing a new version to `main` publishes it, tags it and creates a GitHub release
+
 ## 0.1.1
 
 - Published on PyPI: `pipx install customrp-cli`

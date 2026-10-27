@@ -75,15 +75,25 @@ Releases go to [PyPI](https://pypi.org/project/customrp-cli/) through GitHub Act
 (`.github/workflows/publish.yml`), using PyPI's
 [trusted publishing](https://docs.pypi.org/trusted-publishers/), so no API token is stored anywhere.
 
-1. If customrp-core changed, release it first. Then update the version range in `pyproject.toml`
-   (PyPI doesn't accept dependencies on Git URLs) and the tag in `requirements.txt`.
-2. Update `__version__` in `src/customrp_cli/__init__.py` and `CHANGELOG.md`.
-3. Commit and tag: `git tag -a v0.2.0 -m "customrp-cli 0.2.0" && git push origin main v0.2.0`.
-4. The workflow builds the package, checks that the tag matches `__version__`, and waits for approval:
-   open the run under **Actions**, then **Review deployments** → **pypi** → **Approve and deploy**.
+Releases are automatic. To release:
 
-Every push also builds the package and runs `twine check`, so packaging problems show up before a release.
+1. If customrp-core changed, release it first, then update its version range in `pyproject.toml`
+   and `requirements.txt`.
+2. Update `__version__` in `src/customrp_cli/__init__.py`, and rename `## Unreleased` in
+   `CHANGELOG.md` to `## <version>`.
+3. Commit and push to `main`.
 
-The `pypi` environment (repository **Settings → Environments**) only accepts `v*` tags and needs a
-reviewer's approval. The matching trusted publisher on PyPI is set for this repository, workflow
-`publish.yml` and environment `pypi`; renaming any of these breaks publishing until PyPI is updated.
+On every push to `main`, the **CI and release** workflow runs the tests on all three systems and builds
+the package. If the tests pass and PyPI doesn't have that version yet, it publishes it, tags the commit
+`v<version>`, and creates a GitHub release with the changelog section as its notes. Pushes that don't
+change the version just run the tests. Don't create `v*` tags by hand; the workflow does that.
+
+Pull requests run the tests and the build, but never publish. If a release fails, open the run under
+**Actions** and use **Re-run failed jobs**, or start it again from **Actions → CI and release → Run
+workflow** on `main`.
+
+The `pypi` environment (repository **Settings → Environments**) only accepts the `main` branch. To
+require approval before each release, add yourself as a required reviewer there.
+
+The matching trusted publisher on PyPI is set for this repository, workflow `publish.yml` and
+environment `pypi`; renaming any of these breaks publishing until PyPI is updated.

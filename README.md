@@ -106,7 +106,7 @@ git clone https://github.com/KeiraOMG0/customrp-cli.git
 cd customrp-cli
 python3 -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
-pip install -r requirements.txt    # Installs customrp-core from GitHub
+pip install -r requirements.txt    # customrp-core from PyPI
 pip install .
 ```
 

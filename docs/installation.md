@@ -6,12 +6,12 @@
 |---|---|
 | Python | 3.9 or newer. Python 3.9 and 3.10 also need `tomli`, which is installed automatically. |
 | Discord | The desktop app, running on the same computer and user account. Flatpak, Snap and Vesktop should work too (see [troubleshooting](troubleshooting.md#discord-isnt-found)). |
-| Git | Only to install from GitHub instead of PyPI |
+| Git | Only to install the development version from GitHub |
 
 customrp-cli and the library it's built on, [customrp-core](https://github.com/KeiraOMG0/customrp-core),
 are both on PyPI ([customrp-cli](https://pypi.org/project/customrp-cli/),
-[customrp-core](https://pypi.org/project/customrp-core/)). `requirements.txt` installs customrp-core
-from GitHub at a release tag instead, for anyone who'd rather not use PyPI.
+[customrp-core](https://pypi.org/project/customrp-core/)). Everything installs from PyPI, including
+`requirements.txt`.
 
 ## With pipx (recommended)
 
@@ -115,7 +115,7 @@ git clone https://github.com/KeiraOMG0/customrp-cli.git
 cd customrp-cli
 python3 -m venv .venv
 source .venv/bin/activate          # Windows PowerShell: .venv\Scripts\Activate.ps1
-pip install -r requirements.txt    # customrp-core from GitHub, and tomli on old Pythons
+pip install -r requirements.txt    # customrp-core from PyPI, and tomli on old Pythons
 pip install .
 customrp-cli --version
 ```
