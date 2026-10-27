@@ -67,9 +67,9 @@ More in [docs/migrating-from-customrp.md](docs/migrating-from-customrp.md).
 
 | System | Status |
 |---|---|
-| Linux | Tested on Ubuntu 24.04 (WSL) against a fake Discord over a real Unix socket, including running as a separate process. **Not yet tested against the real Discord client on Linux.** |
-| Windows 10/11 | Tested against a fake Discord over a named pipe, including background mode with `pythonw`. The underlying library has completed a handshake with the real Discord client. |
-| macOS | Should work, since it uses the same code paths as Linux, but **untested**. |
+| Linux | Tests run in CI on Ubuntu, and were run on Ubuntu 24.04 (WSL), against a fake Discord over a real Unix socket, including running as a separate process. **Not yet tested against the real Discord client on Linux.** |
+| Windows 10/11 | Tests run in CI and on Windows 11 against a fake Discord over a named pipe, including background mode with `pythonw`. The underlying library has completed a handshake with the real Discord client. |
+| macOS | Tests run in CI on macOS against a fake Discord over a real Unix socket, including running as a separate process. **Not yet tested against the real Discord client on macOS**, and the launchd setup is untested. |
 
 You need:
 
